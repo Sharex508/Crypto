@@ -6,18 +6,20 @@ import psycopg2
 from psycopg2 import Error
 import reset
   
-#establishing the connection
 conn = psycopg2.connect(
-   user='postgres', password='Harsha508', host='127.0.0.1', port= '5432'
+   database="postgres", user='postgres', password='harsha508', host='localhost', port= '5432'
 )
+conn.autocommit = True
+
 #Creating a cursor object using the cursor() method
 cursor = conn.cursor()
 
-#Executing an MYSQL function using the execute() method
-cursor.execute(crypto)
-# Fetch a single row using fetchone() method.
-data = cursor.fetchone()
-print("Connection established to: ",data)
+#Preparing query to create a database  
+sql = '''CREATE database crypto''';
+
+#Creating a database
+cursor.execute(sql)
+print("Database created successfully........")
 
 #Closing the connection
 conn.close()

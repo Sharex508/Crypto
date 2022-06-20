@@ -401,10 +401,10 @@ get_coin_status()
 def get_coin_buy_results():
     try:
         connection = psycopg2.connect(user="postgres",
-                                          password="Twins@2018",
+                                          password="harsha508",
                                           host="127.0.0.1",
                                           port="5432",
-                                          database="wazirx")
+                                          database="crypto")
         connection.autocommit = True
 
         cursor = connection.cursor()
