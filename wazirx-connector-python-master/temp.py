@@ -3,7 +3,6 @@ from datetime import datetime as dt
 from psycopg2 import Error
 import psycopg2
 from psycopg2 import Error
-import reset
   
 conn = psycopg2.connect(
    database="postgres", user='postgres', password='harsha508', host='localhost', port= '5432'
