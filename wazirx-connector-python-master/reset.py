@@ -6,7 +6,6 @@ import requests
 import websockets
 import json
 from wazirx_sapi_client.rest import Client
-from main_crypto import get_data_from_wazirx
 from psycopg2 import Error
 
 
@@ -52,7 +51,7 @@ def table_Create_crypto ():
                 ap_margin         TEXT,
                 sellMargin        TEXT,
                 created_at        TEXT,
-                retrycount        INteger,
+                retrycount        Integer,
                 status            TEXT  DEFAULT 0
                 ); '''
         cursor.execute(create_table_query)

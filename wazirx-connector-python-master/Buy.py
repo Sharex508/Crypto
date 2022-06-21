@@ -14,6 +14,8 @@ import schedule
 from notifications import notisend
 client = Client()
 import re
+import pandas as pd
+
 
 
 def get_db_connection():
@@ -74,7 +76,7 @@ def get_results():
         connection.autocommit = True
 
         cursor = connection.cursor()
-        sql = "SELECT * FROM trading_test where status='0'"
+        sql = "SELECT symbol, intialPrice, highPrice, lastPrice, purchasePrice, bp_margin FROM trading_test where status='0'"
         try:
 
             cursor.execute(sql)
@@ -85,6 +87,8 @@ def get_results():
             data = []
             for obj in results:
                data.append(dict(zip(keys, obj)))
+        
+            #print(pd.DataFrame(data))
             return data
 
         except Exception as e:
@@ -198,11 +202,12 @@ def task(db_resp, api_resp, data):
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
         api_last_price = float(api_match_data[0]['lastPrice'])
         print(api_last_price)
+        print(db_match_data[0])
         db_margin = float(db_match_data[0]['bp_margin'])
         print(db_margin)
 
     if api_last_price >= db_margin:
-        print(db_margin)
+        print(db_margin) 
         symbol = db_match_data[0]['symbol']
                 #balance = get_amount()
         quantity = 100 / float(api_last_price)
