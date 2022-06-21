@@ -12,7 +12,6 @@ from psycopg2.extras import execute_values
 import datetime
 import time
 import threading
-from Email_send import mailSend
 import schedule
 
 
@@ -263,7 +262,7 @@ def task(db_resp, api_resp, data):
                       "timestamp": int(time.time() * 1000)}
                 #coin_buy(data)
                 msg = "{0} margin morethan {1}".format(symbol,margin)
-                mailSend(msg)
+                #mailSend(msg)
 
         else:
             margin = (api_last_price - float(db_match_data[0]['intialPrice'])) / float(

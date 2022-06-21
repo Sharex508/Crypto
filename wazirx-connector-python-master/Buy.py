@@ -1,3 +1,4 @@
+from tokenize import Double
 import requests
 import websockets
 from wazirx_sapi_client.rest import Client
@@ -12,6 +13,7 @@ import threading
 import schedule
 from notifications import notisend
 client = Client()
+import re
 
 
 def get_db_connection():
@@ -195,7 +197,9 @@ def task(db_resp, api_resp, data):
         db_match_data = [item for item in db_resp if item["symbol"] == ele]
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
         api_last_price = float(api_match_data[0]['lastPrice'])
+        print(api_last_price)
         db_margin = float(db_match_data[0]['bp_margin'])
+        print(db_margin)
 
     if api_last_price >= db_margin:
         print(db_margin)

@@ -11,7 +11,6 @@ import psycopg2
 import datetime
 import time
 import threading
-from Email_send import mailSend
 import schedule
 
 client = Client()
