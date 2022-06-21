@@ -1,7 +1,6 @@
 import psycopg2
 from datetime import datetime as dt
 from psycopg2 import Error
-from main_crypto import get_data_from_wazirx
 import psycopg2
 from psycopg2 import Error
 import reset
