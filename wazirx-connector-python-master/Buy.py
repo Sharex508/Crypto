@@ -204,6 +204,8 @@ def task(db_resp, api_resp, data):
         print(api_last_price)
         print(db_match_data[0])
         db_margin = float(db_match_data[0]['bp_margin'])
+        initialp =  float(db_match_data[0]['intialPrice'])
+
         print(db_margin)
 
     if api_last_price >= db_margin:
@@ -211,9 +213,10 @@ def task(db_resp, api_resp, data):
         symbol = db_match_data[0]['symbol']
                 #balance = get_amount()
         quantity = 100 / float(api_last_price)
+        data1 = {"symbol": ele, "side": "buy", "type": "limit", "initial price": initialp, "purchasing price": float(api_last_price), "dbmargin":db_margin, "quantity": quantity, }
         data = {"symbol": ele, "side": "buy", "type": "limit", "price": float(api_last_price), "quantity": quantity, "recvWindow": 10000,
                 "timestamp": int(time.time() * 1000)}
-        msg = data
+        msg = data1
         notisend(msg)
 
 def coin_buy(data):
@@ -235,5 +238,5 @@ def update_coin_record(info):
     finally:
         con[0].close()
 
-get_diff_of_db_api_values()
+#get_diff_of_db_api_values()
 #get_open_order_status()
