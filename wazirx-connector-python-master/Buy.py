@@ -42,7 +42,7 @@ def get_data_from_wazirx():
 
     values = 'inr'
 
-    resp = [d for d in data if d['quoteAsset'] == "inr"]
+    resp = [d for d in data if isinstance(d,dict) and ['quoteAsset'] == "inr"]
     rem_list = [
     'baseAsset',
     'quoteAsset',
