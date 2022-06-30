@@ -489,18 +489,17 @@ def coin_sell(data):
 
 
 import time
-##
-##
-# def show():
-# get_diff_of_db_api_values()
-# get_open_order_status()
-##
-# schedule.every(5).seconds.do(show)
-##
-# while 1:
-# schedule.run_pending()
-# time.sleep(1)
+
+def show():
+    get_diff_of_db_api_values()
+    get_open_order_status()
+
+    schedule.every(5).seconds.do(show)
+
+    while 1:
+        schedule.run_pending()
+        time.sleep(1)
 ##
 
-
+show()
 
