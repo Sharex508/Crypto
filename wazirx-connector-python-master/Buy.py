@@ -239,9 +239,9 @@ def update_coin_record(info):
     finally:
         con[0].close()
 
-#get_diff_of_db_api_values()
-#get_open_order_status()
 def show():
+    get_data_from_wazirx()
+    get_results()
     get_diff_of_db_api_values()
     schedule.every(10).seconds.do(show)
 
