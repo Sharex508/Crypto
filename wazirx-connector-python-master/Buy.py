@@ -1,4 +1,5 @@
 from tokenize import Double
+import sys
 import requests
 import websockets
 from wazirx_sapi_client.rest import Client
@@ -108,6 +109,8 @@ def get_diff_of_db_api_values():
     api_resp = get_data_from_wazirx()
     dicts_data = [obj['symbol'] for obj in db_resp]
     n = 25
+    Print("recur limit"+sys.getrecursionlimit())
+
 
     # using list comprehension
     final = [dicts_data[i * n:(i + 1) * n]
