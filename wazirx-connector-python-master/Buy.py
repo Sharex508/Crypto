@@ -1,5 +1,4 @@
 from tokenize import Double
-import sys
 import requests
 import websockets
 from wazirx_sapi_client.rest import Client
@@ -149,6 +148,7 @@ def update_coin_record(info):
         sql= "UPDATE trading_test  SET status = 1 ,purchasePrice= {1}WHERE symbol={0}".format(repr(info['symbol'], info['price']),);
         con[1].execute(sql)
         con[0].commit()
+        print("This database commit completed")
     except Exception as e:
         print(e)
     finally:
