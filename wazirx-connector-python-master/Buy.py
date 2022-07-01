@@ -162,7 +162,8 @@ def task5(db_resp, api_resp, data):
 
 def task6(db_resp, api_resp, data):
     task(db_resp, api_resp, data)
-    def task7(db_resp, api_resp, data):
+    
+def task7(db_resp, api_resp, data):
     task(db_resp, api_resp, data)
 
 
