@@ -109,11 +109,11 @@ def get_diff_of_db_api_values():
     dicts_data = [obj['symbol'] for obj in db_resp]
     data = dicts_data
     task(db_resp, api_resp, data)
-
+    
 def task(db_resp, api_resp, data):
     for ele in data:
-        db_match_data = [for item in db_resp if item["symbol"] == ele]
-        api_match_data = [for item in api_resp if item["symbol"] == ele]
+        db_match_data = [item for item in db_resp if item["symbol"] == ele]
+        api_match_data = [item for item in api_resp if item["symbol"] == ele]
         api_last_price = float(api_match_data[0]['lastPrice'])
         print(api_last_price)
         print(db_match_data[0])
@@ -128,7 +128,7 @@ def task(db_resp, api_resp, data):
                 #balance = get_amount()
         quantity = 100 / float(api_last_price)
         data1 = {"symbol": ele, "side": "buy", "type": "limit", "initial price": initialp, "purchasing price": float(api_last_price), "dbmargin":db_margin, "quantity": quantity, }
-        data = {"symbol": ele, "side": "buy", "type": "limit", "price": float(api_last_price), "quantity": quantity, "recvWindow": 10000,
+        dbdata = {"symbol": ele, "side": "buy", "type": "limit", "price": float(api_last_price), "quantity": quantity, "recvWindow": 10000,
                 "timestamp": int(time.time() * 1000)}
         msg = data1
         notisend(msg)
