@@ -158,7 +158,7 @@ def show():
     get_data_from_wazirx()
     get_results()
     get_diff_of_db_api_values()
-    schedule.every(10).seconds.do(show)
+    schedule.every(15).seconds.do(show)
 
     while 1:
         schedule.run_pending()
