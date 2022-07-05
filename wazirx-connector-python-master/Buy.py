@@ -107,8 +107,8 @@ def get_diff_of_db_api_values():
     db_resp = get_results()
     api_resp = get_data_from_wazirx()
     dicts_data = [obj['symbol'] for obj in db_resp]
-    task(db_resp, api_resp, dicts_data)
-
+    data = dicts_data
+    task(db_resp, api_resp, data)
 
 def task(db_resp, api_resp, data):
     for ele in data:
