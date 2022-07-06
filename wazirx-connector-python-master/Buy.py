@@ -111,8 +111,10 @@ def get_diff_of_db_api_values():
     task(db_resp, api_resp, data)
     
 def task(db_resp, api_resp, data):
+    print(api_resp)
     for ele in data:
         db_match_data = [item for item in db_resp if item["symbol"] == ele]
+        print('test'+ele)
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
         api_last_price = float(api_match_data[0]['lastPrice'])
         print(api_last_price)
