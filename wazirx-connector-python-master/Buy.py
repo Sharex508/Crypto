@@ -157,12 +157,8 @@ def update_coin_record(info):
         con[0].close()
 
 def show():
-    get_diff_of_db_api_values()
-    schedule.every(20).seconds.do(show)
 
     while 1:
-        schedule.run_pending()
-        time.sleep(1)
-##
-
+        get_diff_of_db_api_values()
+        time.sleep(10)
 show()
