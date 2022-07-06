@@ -155,10 +155,8 @@ def update_coin_record(info):
         con[0].close()
 
 def show():
-    get_data_from_wazirx()
-    get_results()
     get_diff_of_db_api_values()
-    schedule.every(15).seconds.do(show)
+    schedule.every(20).seconds.do(show)
 
     while 1:
         schedule.run_pending()
