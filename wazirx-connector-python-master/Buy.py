@@ -111,7 +111,7 @@ def get_diff_of_db_api_values():
     task(db_resp, api_resp, data)
     
 def task(db_resp, api_resp, data):
-    print(api_resp)
+    #print(api_resp)
     for ele in data:
         db_match_data = [item for item in db_resp if item["symbol"] == ele]
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
@@ -126,7 +126,9 @@ def task(db_resp, api_resp, data):
         data1 = {"symbol": ele, "side": "buy", "type": "limit", "initial price": initialp, "purchasing price": float(api_last_price), "dbmargin":db_margin, "quantity": quantity, }
         dbdata = {"symbol": ele, "side": "buy", "type": "limit", "price": float(api_last_price), "quantity": quantity, "recvWindow": 10000,
                 "timestamp": int(time.time() * 1000)}
+        
         msg = data1
+        print(dbdata)
         notisend(msg)
         update_coin_record(dbdata)
 
