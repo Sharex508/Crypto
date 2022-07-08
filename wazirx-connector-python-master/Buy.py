@@ -118,8 +118,7 @@ def task(db_resp, api_resp, data):
         api_last_price = float(api_match_data[0]['lastPrice'])
         db_margin = float(db_match_data[0]['bp_margin'])
         initialp =  float(db_match_data[0]['intialPrice'])
-
-     if api_last_price >= db_margin:
+    if api_last_price >= db_margin:
         #print(db_margin) 
         symbol = db_match_data[0]['symbol']
                 #balance = get_amount()
