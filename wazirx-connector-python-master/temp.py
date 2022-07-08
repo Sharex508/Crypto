@@ -16,7 +16,7 @@ cursor = conn.cursor()
 #sql = '''CREATE database crypto''';
 
 #Creating a database
-cursor.execute("DROP TABLE trading_test")
+#cursor.execute("DROP TABLE trading_test")
 cursor.execute("DROP TABLE coin_buy")
 print("Database deteted successfully........")
 
