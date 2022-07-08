@@ -13,11 +13,11 @@ conn.autocommit = True
 cursor = conn.cursor()
 
 #Preparing query to create a database  
-sql = '''CREATE database crypto''';
+#sql = '''CREATE database crypto''';
 
 #Creating a database
-cursor.execute(sql)
-print("Database created successfully........")
+cursor.execute("DROP TABLE trading_test")
+print("Database deteted successfully........")
 
 #Closing the connection
 conn.close()
