@@ -110,15 +110,29 @@ def get_diff_of_db_api_values():
     data = dicts_data
     task(db_resp, api_resp, data)
     
+
 def task(db_resp, api_resp, data):
-    print(api_resp)
+    #print("testing")
+    print(data)
+    #print("test")
+    #print(api_resp)
+    flag = False
     for ele in data:
+
         db_match_data = [item for item in db_resp if item["symbol"] == ele]
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
+        if not len(api_match_data):
+            flag = True
+            continue
+        # print(api_match_data)
         api_last_price = float(api_match_data[0]['lastPrice'])
+        if not len(db_match_data):
+            flag = True
+            continue
         db_margin = float(db_match_data[0]['bp_margin'])
         initialp =  float(db_match_data[0]['intialPrice'])
-    if api_last_price >= db_margin:
+        flag = False
+    if not flag and api_last_price >= db_margin:
         #print(db_margin) 
         symbol = db_match_data[0]['symbol']
                 #balance = get_amount()
@@ -128,7 +142,6 @@ def task(db_resp, api_resp, data):
                 "timestamp": int(time.time() * 1000)}
         
         msg = data1
-        print(dbdata)
         notisend(msg)
         update_coin_record(dbdata)
 
