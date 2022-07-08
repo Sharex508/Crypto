@@ -114,18 +114,13 @@ def task(db_resp, api_resp, data):
     print(api_resp)
     for ele in data:
         db_match_data = [item for item in db_resp if item["symbol"] == ele]
-        print('test'+ele)
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
         api_last_price = float(api_match_data[0]['lastPrice'])
-        print(api_last_price)
-        print(db_match_data[0])
         db_margin = float(db_match_data[0]['bp_margin'])
         initialp =  float(db_match_data[0]['intialPrice'])
 
-        print(db_margin)
-
-    if api_last_price >= db_margin:
-        print(db_margin) 
+     if api_last_price >= db_margin:
+        #print(db_margin) 
         symbol = db_match_data[0]['symbol']
                 #balance = get_amount()
         quantity = 100 / float(api_last_price)
@@ -134,7 +129,7 @@ def task(db_resp, api_resp, data):
                 "timestamp": int(time.time() * 1000)}
         msg = data1
         notisend(msg)
-        update_coin_record(data)
+        update_coin_record(dbdata)
 
 def coin_buy(data):
     try:
@@ -144,14 +139,18 @@ def coin_buy(data):
         print(e)
         notisend(e)
 
-def update_coin_record(info):
+def update_coin_record(dbdata):
     try:
+        print("came to database update")
         con = get_db_connection()
-        sql= "UPDATE trading_test  SET status = 1 ,purchasePrice= {1}WHERE symbol={0}".format(repr(info['symbol'], info['price']),);
+        sql= "UPDATE trading_test  SET status = 1 ,purchasePrice= {1}WHERE symbol={0}".format(repr(dbdata['symbol'], dbdata['price']),);
+        print(sql)
         con[1].execute(sql)
         con[0].commit()
-        print("This database commit completed")
+        print("i was saved")
     except Exception as e:
+        print("i was fucked up")
+        notisend(e)
         print(e)
     finally:
         con[0].close()
