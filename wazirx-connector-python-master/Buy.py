@@ -112,19 +112,13 @@ def get_diff_of_db_api_values():
     
 
 def task(db_resp, api_resp, data):
-    #print("testing")
-    print(data)
-    #print("test")
-    #print(api_resp)
     flag = False
     for ele in data:
-
         db_match_data = [item for item in db_resp if item["symbol"] == ele]
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
         if not len(api_match_data):
             flag = True
             continue
-        # print(api_match_data)
         api_last_price = float(api_match_data[0]['lastPrice'])
         if not len(db_match_data):
             flag = True
@@ -133,7 +127,6 @@ def task(db_resp, api_resp, data):
         initialp =  float(db_match_data[0]['intialPrice'])
         flag = False
     if not flag and api_last_price >= db_margin:
-        #print(db_margin) 
         symbol = db_match_data[0]['symbol']
                 #balance = get_amount()
         quantity = 100 / float(api_last_price)
