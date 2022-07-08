@@ -142,7 +142,7 @@ def update_coin_record(dbdata):
     try:
         print("came to database update")
         con = get_db_connection()
-        sql= "UPDATE trading_test  SET status = 1 ,purchasePrice= {1}WHERE symbol={0}".format(repr(dbdata['symbol'], dbdata['price']),);
+        sql= "UPDATE trading_test  SET status = 1 ,purchasePrice= {1} WHERE symbol= '{0}'".format(repr(dbdata['symbol']), repr(dbdata['price']));
         print(sql)
         con[1].execute(sql)
         con[0].commit()
