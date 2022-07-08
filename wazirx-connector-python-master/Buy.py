@@ -111,7 +111,7 @@ def get_diff_of_db_api_values():
     task(db_resp, api_resp, data)
     
 def task(db_resp, api_resp, data):
-    #print(api_resp)
+    print(api_resp)
     for ele in data:
         db_match_data = [item for item in db_resp if item["symbol"] == ele]
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
