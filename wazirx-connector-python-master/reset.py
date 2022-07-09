@@ -14,7 +14,7 @@ def table_Create_crypto ():
     try:
         connection = psycopg2.connect(user="postgres",
                                             password="harsha508",
-                                            host="database-1.cigflazwbdyg.ap-south-1.rds.amazonaws.com",
+                                            host="localhost",
                                             port="5432",
                                             database="crypto")
 
@@ -111,7 +111,7 @@ def insert_data_db(resp):
     try:
         connection = psycopg2.connect(user="postgres",
                                       password="harsha508",
-                                      host="database-1.cigflazwbdyg.ap-south-1.rds.amazonaws.com",
+                                      host="localhost",
                                       port="5432",
                                       database="crypto")
         connection.autocommit = True
