@@ -10,7 +10,7 @@ from psycopg2 import Error
 
 def table_Delete_crypto ():
     conn = psycopg2.connect(
-    database="crypto", user='postgres', password='harsha508', host='localhost', port= '5432'
+    database="crypto", user='postgres', password='harsha508', host='database-1.cigflazwbdyg.ap-south-1.rds.amazonaws.com', port= '5432'
     )
     conn.autocommit = True
 
@@ -158,7 +158,6 @@ def insert_data_db(resp):
             connection.close()
             print("PostgreSQL connection is closed")
 
-table_Delete_crypto()
 table_Create_crypto ()
 get_data_from_wazirx()
 
