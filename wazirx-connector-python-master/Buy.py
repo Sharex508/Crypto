@@ -21,7 +21,7 @@ import pandas as pd
 def get_db_connection():
     connection = psycopg2.connect(user="postgres",
                                   password="harsha508",
-                                  host="database-1.cigflazwbdyg.ap-south-1.rds.amazonaws.com",
+                                  host="localhost",
                                   port="5432",
                                   database="crypto")
 
@@ -70,7 +70,7 @@ def get_results():
     try:
         connection = psycopg2.connect(user="postgres",
                                           password="harsha508",
-                                          host="database-1.cigflazwbdyg.ap-south-1.rds.amazonaws.com",
+                                          host="localhost",
                                           port="5432",
                                           database="crypto")
         connection.autocommit = True
@@ -118,12 +118,16 @@ def task(db_resp, api_resp, data):
         db_match_data = [item for item in db_resp if item["symbol"] == ele]
         api_match_data = [item for item in api_resp if item["symbol"] == ele]
         if(api_match_data[0]['symbol'] == db_match_data[0]['symbol']):
+            print('1'+api_match_data[0]['symbol'])
+            print('2'+db_match_data[0]['symbol'])
             #print(api_match_data[0]['symbol'])
             api_last_price = float(api_match_data[0]['lastPrice'])
             db_margin = float(db_match_data[0]['bp_margin'])
             initialp =  float(db_match_data[0]['intialPrice'])
     if(api_last_price >= db_margin):
         symbol = db_match_data[0]['symbol']
+        print('Enterd'+symbol)
+
                     #balance = get_amount()
         quantity = 100 / float(api_last_price)
         data1 = {"symbol": ele, "side": "buy", "type": "limit", "initial price": initialp, "purchasing price": float(api_last_price), "dbmargin":db_margin, "quantity": quantity, }
@@ -131,7 +135,7 @@ def task(db_resp, api_resp, data):
                 "timestamp": int(time.time() * 1000)}
             
         msg = data1
-        notisend(msg)
+        #notisend(msg)
         update_coin_record(dbdata)
 
 def coin_buy(data):
