@@ -5,7 +5,7 @@ import psycopg2
 from psycopg2 import Error
   
 conn = psycopg2.connect(
-   database="crypto", user='postgres', password='harsha508', host='localhost', port= '5432'
+   database="crypto", user='postgres', password='harsha508', host='database-1.cigflazwbdyg.ap-south-1.rds.amazonaws.com', port= '5432'
 )
 conn.autocommit = True
 
