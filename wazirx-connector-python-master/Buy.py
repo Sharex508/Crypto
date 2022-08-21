@@ -21,7 +21,7 @@ import pandas as pd
 def get_db_connection():
     connection = psycopg2.connect(user="postgres",
                                   password="harsha508",
-                                  host="localhost",
+                                  host="database-1.cigflazwbdyg.ap-south-1.rds.amazonaws.com",
                                   port="5432",
                                   database="crypto")
 
@@ -70,7 +70,7 @@ def get_results():
     try:
         connection = psycopg2.connect(user="postgres",
                                           password="harsha508",
-                                          host="localhost",
+                                          host="database-1.cigflazwbdyg.ap-south-1.rds.amazonaws.com",
                                           port="5432",
                                           database="crypto")
         connection.autocommit = True
@@ -135,7 +135,7 @@ def task(db_resp, api_resp, data):
                 "timestamp": int(time.time() * 1000)}
             
         msg = data1
-        #notisend(msg)
+        notisend(msg)
         update_coin_record(dbdata)
 
 def coin_buy(data):
